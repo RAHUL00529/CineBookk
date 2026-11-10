@@ -10,7 +10,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "seed": "node src/seed/seed.js",
-    "reset": "node src/seed/reset.js"
+    "reset": "node src/seed/reset.js",
+    "refresh-shows": "node src/seed/refreshShows.js"
   },
   "keywords": [],
   "author": "",

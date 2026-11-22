@@ -32,6 +32,7 @@ import { getErrorMessage } from "../utils/errors.js";
 import MovieGrid from "../components/movies/MovieGrid.jsx";
 import Spinner from "../components/common/Spinner.jsx";
 import ErrorBanner from "../components/common/ErrorBanner.jsx";
+import HeroBanner from "../components/movies/HeroBanner.jsx";
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -58,11 +59,26 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-6">
-      <h1 className="mb-4 text-xl font-bold text-ink">Now Showing</h1>
-      {loading && <Spinner />}
-      {error && <ErrorBanner message={error} />}
-      {!loading && !error && <MovieGrid movies={movies} />}
-    </main>
+    // <main className="mx-auto max-w-6xl px-4 py-6">
+    //   <h1 className="mb-4 text-xl font-bold text-ink">Now Showing</h1>
+    //   {loading && <Spinner />}
+    //   {error && <ErrorBanner message={error} />}
+    //   {!loading && !error && <MovieGrid movies={movies} />}
+    // </main>
+    <>
+      <HeroBanner />
+      <main className="mx-auto max-w-6xl px-4 py-8">
+        <h2 className="mb-5 flex items-center gap-3 text-2xl font-bold text-ink">
+          <span
+            className="h-7 w-1.5 rounded-full bg-brand"
+            aria-hidden="true"
+          />
+          Now Showing
+        </h2>
+        {loading && <Spinner />}
+        {error && <ErrorBanner message={error} />}
+        {!loading && !error && <MovieGrid movies={movies} />}
+      </main>
+    </>
   );
 }

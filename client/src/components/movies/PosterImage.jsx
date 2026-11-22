@@ -5,19 +5,20 @@ function posterGradient(title) {
 }
 
 // Fills its parent, so the parent decides the size and shape
-export default function PosterImage({ movie }) {
+export default function PosterImage({ movie, className = "" }) {
   if (movie.posterUrl) {
     return (
       <img
         src={movie.posterUrl}
         alt={`${movie.title} poster`}
+        className={className}
         className="h-full w-full object-cover"
       />
     );
   }
   return (
     <div
-      className="flex h-full w-full items-center justify-center p-4 text-center font-bold text-white"
+      className={`flex h-full w-full items-center justify-center p-4 text-center font-bold text-white ${className}`}
       style={{ background: posterGradient(movie.title) }}
     >
       {movie.title}

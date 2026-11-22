@@ -33,6 +33,7 @@ import MovieGrid from "../components/movies/MovieGrid.jsx";
 import Spinner from "../components/common/Spinner.jsx";
 import ErrorBanner from "../components/common/ErrorBanner.jsx";
 import HeroBanner from "../components/movies/HeroBanner.jsx";
+import FilmStrip from "../components/layout/FilmStrip.jsx";
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -78,6 +79,13 @@ export default function HomePage() {
         {loading && <Spinner />}
         {error && <ErrorBanner message={error} />}
         {!loading && !error && <MovieGrid movies={movies} />}
+        <div className="relative overflow-hidden">
+          <FilmStrip className="pointer-events-none absolute -left-12 top-40 hidden h-96 -rotate-45 text-brand/10 lg:block" />
+          <FilmStrip className="pointer-events-none absolute -right-12 bottom-0 hidden h-96 -rotate-45 text-brand/10 lg:block" />
+          <main className="relative mx-auto max-w-6xl px-4 py-8">
+            {/* heading, spinner, error, grid stay exactly as they are */}
+          </main>
+        </div>
       </main>
     </>
   );

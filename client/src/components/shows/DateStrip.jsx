@@ -3,7 +3,7 @@ export default function DateStrip({ days, selected, onSelect }) {
     <div
       role="group"
       aria-label="Choose a date"
-      className="flex gap-2 overflow-x-auto py-1"
+      className="flex gap-3 overflow-x-auto px-1 pb-3 pt-1"
     >
       {days.map((d) => {
         const active = d.value === selected;
@@ -13,15 +13,15 @@ export default function DateStrip({ days, selected, onSelect }) {
             type="button"
             aria-pressed={active}
             onClick={() => onSelect(d.value)}
-            className={`flex w-14 shrink-0 flex-col items-center rounded-lg border px-2 py-2 ${
+            className={`flex w-16 shrink-0 flex-col items-center rounded-xl px-2 py-3 text-xs transition ${
               active
-                ? "border-ink bg-ink text-white"
-                : "border-gray-200 bg-white text-gray-700 hover:border-gray-400"
+                ? "bg-brand text-white shadow-lg shadow-brand/30"
+                : "bg-white text-gray-700 shadow-md hover:-translate-y-0.5 hover:shadow-lg"
             }`}
           >
-            <span className="text-base font-bold">{d.day}</span>
-            <span className="text-xs">{d.weekday}</span>
-            <span className="text-[10px]">{d.month}</span>
+            <span className="text-xl font-bold">{d.day}</span>
+            <span className="font-medium">{d.weekday}</span>
+            <span className="text-[10px] uppercase">{d.month}</span>
           </button>
         );
       })}

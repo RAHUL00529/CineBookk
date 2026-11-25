@@ -9,6 +9,7 @@ import DateStrip from "../components/shows/DateStrip.jsx";
 import TheaterShowList from "../components/shows/TheaterShowList.jsx";
 import Spinner from "../components/common/Spinner.jsx";
 import ErrorBanner from "../components/common/ErrorBanner.jsx";
+import FilmStrip from "../components/layout/FilmStrip.jsx";
 
 export default function MovieDetailPage() {
   const { id } = useParams();
@@ -86,22 +87,26 @@ export default function MovieDetailPage() {
   return (
     <>
       <MovieBanner movie={movieState.movie} />
-      <main className="mx-auto max-w-6xl px-4 py-6">
-        <DateStrip
-          days={days}
-          selected={selectedDate}
-          onSelect={setSelectedDate}
-        />
-        <div className="mt-6">
-          {showsLoading && <Spinner />}
-          {!showsLoading && showsState.error && (
-            <ErrorBanner message={showsState.error} />
-          )}
-          {!showsLoading && !showsState.error && (
-            <TheaterShowList theaters={showsState.theaters} />
-          )}
-        </div>
-      </main>
+      <div className="relative overflow-hidden">
+        <FilmStrip className="pointer-events-none absolute -right-16 top-10 hidden h-96 -rotate-45 text-brand/15 lg:block" />
+        <main className="relative mx-auto max-w-6xl px-4 py-6">
+          {/* DateStrip and the shows block stay exactly as they are */}
+          <DateStrip
+            days={days}
+            selected={selectedDate}
+            onSelect={setSelectedDate}
+          />
+          <div className="mt-6">
+            {showsLoading && <Spinner />}
+            {!showsLoading && showsState.error && (
+              <ErrorBanner message={showsState.error} />
+            )}
+            {!showsLoading && !showsState.error && (
+              <TheaterShowList theaters={showsState.theaters} />
+            )}
+          </div>
+        </main>
+      </div>
     </>
   );
 }
